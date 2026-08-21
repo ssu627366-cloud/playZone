@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>2048</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="game-container">
+      <!-- TOP -->
+      <div class="top">
+        <div class="logo-box">
+          <h1>2048</h1>
+          <p>Powers of 2</p>
+        </div>
+
+        <div class="score-box">
+          <span>SCORE</span>
+          <strong id="score">0</strong>
+        </div>
+
+        <div class="score-box">
+          <span>BEST</span>
+          <strong id="best">0</strong>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="buttons">
+        <button id="undo">
+          Undo
+          <small id="undo-count">3</small>
+        </button>
+
+        <button id="restart">Restart</button>
+
+        <button id="settings">Home</button>
+      </div>
+
+      <!-- GAME BOARD -->
+      <div id="game-board"></div>
+
+      <!-- MESSAGE -->
+      <div id="message">
+        <h2 id="message-title">Game Over!</h2>
+
+        <button id="message-button">Try Again</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

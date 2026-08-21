@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- boxicon -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="image/logo.jpg" type="image/x-icon" />
+
+    <title>Games</title>
+    <!-- css -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppons", sans-serif;
+        background: #d7d7e2;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: color #0f0f1a;
+      }
+      .container {
+        width: 100%;
+        max-width: 400px;
+        padding: 40px;
+        background-color: #d7d7e2;
+        border-radius: 20px;
+        box-shadow:
+          10px 10px 20px #7c3aed,
+          -10px -10px 20px #a855f7;
+      }
+      .title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #7c3aed;
+        font-weight: 600;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+      .input-group {
+        margin-bottom: 30px;
+        padding: 15px 20px 15px 50px;
+        background-color: #d7d7e2;
+        border-radius: 15px;
+        font-size: 16px;
+        color: #a855f7;
+        box-shadow:
+          inset 5px 5px 10px #7c3aed,
+          inset -5px -5px 10px #a855f7;
+      }
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+      }
+      .input-group input::placeholder {
+        color: #7c3aed;
+        background-color: #d7d7e2;
+      }
+      .input-group i {
+        color: #7c3aed;
+        font-size: 20px;
+      }
+      .btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        outline: none;
+        background-color: #d7d7e2;
+        border-radius: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #7c3aed;
+        cursor: pointer;
+        box-shadow:
+          5px 5px 10px #7c3aed,
+          inset -5px -5px 10px #a855f7;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .btn:hover {
+        box-shadow:
+          inset 5px 5px 10px #7c3aed,
+          inset -5px -5px 10px #a855f7;
+      }
+      .btn:active {
+        transform: scale(0.98);
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 30px 20px;
+          margin: 0 15px;
+        }
+        .title {
+          font-size: 24px;
+        }
+        .input-group input {
+          padding: 12px 15px 12px 45px;
+        }
+        .input-group i {
+          font-size: 18px;
+        }
+        .btn {
+          padding: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- log in form -->
+    <div class="container">
+      <h2 class="title">lOG In</h2>
+      <!-- login form -->
+      <form id="form">
+        <div class="input-group">
+          <i class="bx bx-user"></i>
+          <input type="text" placeholder="username" id="username" required />
+        </div>
+
+        <div class="input-group">
+          <i class="bx bx-lock"></i>
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <i class="bx bx-lock"></i>
+          <input
+            type="password"
+            placeholder="confirm password"
+            id="confirm"
+            required
+          />
+        </div>
+
+        <button class="btn">Submit</button>
+      </form>
+    </div>
+    <!-- javaScript -->
+    <script>
+      const form = document.getElementById("form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        const confirm = document.getElementById("confirm").value;
+        if (
+          username === "Lily" &&
+          password === "123456" &&
+          confirm === "123456"
+        ) {
+          alert("Log in successful");
+          window.location.href = "chooseGames.html";
+        }
+      });
+    </script>
+  </body>
+</html>

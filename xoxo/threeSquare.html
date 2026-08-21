@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../image/logo.jpg" type="image/x-icon" />
+    <!-- css -->
+    <style>
+      body {
+        background: linear-gradient(90deg, #9b5cff, #f264bc, #89c6e7);
+        /* -webkit-background-clip: text; */
+
+        font-family: Arial, Helvetica, sans-serif;
+        color: wheat;
+        text-align: center;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      hr {
+        width: 500px;
+        height: 2px;
+        background-color: #b050fa;
+        border: 0;
+      }
+      #game-board {
+        width: 450px;
+        height: 450px;
+        margin: 0 auto;
+        background-color: #411166;
+        color: #c31b82;
+        border: 6px solid #c5a6dc;
+        border-radius: 10px;
+        display: grid;
+        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+      }
+
+      #game-board div:nth-child(even) {
+        color: #5ec9ff;
+      }
+      .game-cell {
+        border: 6px solid #c5a6dc;
+        border-radius: 2px;
+        font-size: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .winning-game-cell {
+        background-color: white;
+        color: #b050fa;
+      }
+      .game-restart-button {
+        height: 50px;
+        width: 150px;
+        border: 5px solid #c5a6dc;
+        border-radius: 5px;
+        background-color: #b050fa;
+        color: white;
+        background-color: #b050fa;
+        margin-top: 20px;
+      }
+      .cell {
+        color: black;
+        font-size: 2rem;
+      }
+      @media (max-width: 600px) {
+        body {
+          overflow: hidden;
+        }
+        #game-board {
+          width: 90vw;
+          height: 90vw;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        .game-cell {
+          font-size: 14vw;
+        }
+        #game-restart-button {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    </style>
+    <title>XoXo</title>
+  </head>
+  <body>
+    <h1>Xo Xo</h1>
+    <hr />
+    <br />
+    <div id="game-board">
+      <div class="game-cell" data-cell-index="0"></div>
+      <div class="game-cell" data-cell-index="1"></div>
+      <div class="game-cell" data-cell-index="2"></div>
+      <div class="game-cell" data-cell-index="3"></div>
+      <div class="game-cell" data-cell-index="4"></div>
+      <div class="game-cell" data-cell-index="5"></div>
+      <div class="game-cell" data-cell-index="6"></div>
+      <div class="game-cell" data-cell-index="7"></div>
+      <div class="game-cell" data-cell-index="8"></div>
+    </div>
+    <button id="game-restart-button" class="game-restart-button">
+      Restart
+    </button>
+    <button id="home" class="game-restart-button">Home</button>
+    <script>
+      let playerO = "O";
+      let playerX = "X";
+      let currPlayer = playerO;
+      let gameBoard = ["", "", "", "", "", "", "", "", ""];
+      let gameCells;
+      let settingsButton = document.getElementById("home");
+      let winning = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+      // click tat nay  yar OX  paw phoe
+      let gameOver = false;
+      let restartGameButton;
+      window.onload = function () {
+        gameCells = document.getElementsByClassName("game-cell");
+        for (let cell of gameCells) {
+          cell.addEventListener("click", placeCell);
+        }
+        restartGameButton = document.getElementById("game-restart-button");
+        restartGameButton.addEventListener("click", restartGame);
+      };
+      // O    nae  X alternate
+      function placeCell() {
+        if (gameOver) {
+          return;
+        }
+        let index = this.dataset.cellIndex;
+        if (gameBoard[index] !== "") {
+          return;
+        }
+        gameBoard[index] = currPlayer;
+        this.innerText = currPlayer;
+        checkWinner();
+        if (currPlayer == playerO) {
+          currPlayer = playerX;
+        } else {
+          currPlayer = playerO;
+        }
+      }
+      function checkWinner() {
+        for (let win of winning) {
+          let a = gameBoard[win[0]];
+          let b = gameBoard[win[1]];
+          let c = gameBoard[win[2]];
+          if (a == b && b == c && a != "") {
+            for (let i of win) {
+              gameCells[i].classList.add("winning-game-cell");
+            }
+            gameOver = true;
+            return;
+          }
+        }
+      }
+      function restartGame() {
+        gameOver = false;
+        gameBoard = ["", "", "", "", "", "", "", "", ""];
+        for (let cell of gameCells) {
+          cell.innerText = "";
+          cell.classList.remove("winning-game-cell");
+        }
+      }
+      settingsButton.addEventListener("click", function () {
+        window.location.href = "index.html";
+      });
+    </script>
+  </body>
+</html>

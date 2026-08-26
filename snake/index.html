@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Snake & Ladder</title>
+    <link rel="stylesheet" href="snake.css" />
+  </head>
+
+  <body>
+    <!-- header -->
+    <header>
+      <h2>SNAKE & LADDER</h2>
+      <p>Roll . Move . Climb . Avoid</p>
+    </header>
+
+    <!--game-->
+    <div class="game-container">
+      <!--left -->
+      <div class="left-panel">
+        <div class="panel">
+          <div class="panel-title">Players</div>
+
+          <div id="player1Box" class="player active">
+            <div class="player-info">
+              <div class="player-name">Player 1</div>
+
+              <div>
+                Position:
+                <span id="p1Position">1</span>
+              </div>
+            </div>
+
+            <div class="player-score">
+              <span id="p1Score">0</span>
+            </div>
+          </div>
+
+          <div id="player2Box" class="player p2">
+            <div class="player-info">
+              <div class="player-name">Player 2</div>
+
+              <div>
+                Position:
+                <span id="p2Position">1</span>
+              </div>
+            </div>
+
+            <div class="player-score">
+              <span id="p2Score">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TURN -->
+
+        <div class="panel">
+          <div class="panel-title">🎮 Current Turn</div>
+
+          <div id="turnText" class="turn">Player 1's Turn</div>
+        </div>
+      </div>
+
+      <!-- borad-->
+
+      <div>
+        <div id="board" class="board"></div>
+      </div>
+
+      <!--right-->
+      <div class="right-panel">
+        <!-- dice -->
+
+        <div class="panel dice-box">
+          <div class="panel-title">🎲 Dice</div>
+          <div id="dice" class="dice">⚄</div>
+
+          <button id="rollBtn" class="roll-btn" onclick="rollDice()">
+            🎲 Roll Dice
+          </button>
+        </div>
+
+        <!-- BUTTONS -->
+
+        <div class="panel">
+          <button class="new-btn" onclick="newGame()">▶ New Game</button>
+
+          <button class="home-btn" onclick="goHome()">🏠 Home</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WIN MESSAGE -->
+
+    <div id="message" class="message">🏆 Player 1 Wins!</div>
+
+    <script src="snake.js"></script>
+  </body>
+</html>

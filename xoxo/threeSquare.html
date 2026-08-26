@@ -101,6 +101,7 @@
       <div class="game-cell" data-cell-index="7"></div>
       <div class="game-cell" data-cell-index="8"></div>
     </div>
+
     <button id="game-restart-button" class="game-restart-button">
       Restart
     </button>
@@ -108,7 +109,7 @@
     <script>
       let playerO = "O";
       let playerX = "X";
-      let currPlayer = playerO;
+      let currPlayer = playerX;
       let gameBoard = ["", "", "", "", "", "", "", "", ""];
       let gameCells;
       let settingsButton = document.getElementById("home");
@@ -135,7 +136,7 @@
       };
       // O    nae  X alternate
       function placeCell() {
-        if (gameOver) {
+        if (gameOver || currPlayer !== playerX) {
           return;
         }
         let index = this.dataset.cellIndex;
@@ -145,24 +146,59 @@
         gameBoard[index] = currPlayer;
         this.innerText = currPlayer;
         checkWinner();
-        if (currPlayer == playerO) {
-          currPlayer = playerX;
-        } else {
-          currPlayer = playerO;
+
+        if (gameOver) {
+          return;
         }
+        currPlayer = playerO;
+        setTimeout(computerMove, 500);
+      }
+
+      function computerMove() {
+        if (gameOver || currPlayer !== playerO) {
+          return;
+        }
+        let emptyCells = [];
+        for (let i = 0; i < gameBoard.length; i++) {
+          if (gameBoard[i] === "") {
+            emptyCells.push(i);
+          }
+        }
+        if (emptyCells.length === 0) {
+          return;
+        }
+        let randomIndex =
+          emptyCells[Math.floor(Math.random() * emptyCells.length)];
+        gameBoard[randomIndex] = playerO;
+        gameCells[randomIndex].innerText = playerO;
+        checkWinner();
+        if (gameOver) {
+          return;
+        }
+        currPlayer = playerX;
       }
       function checkWinner() {
         for (let win of winning) {
           let a = gameBoard[win[0]];
           let b = gameBoard[win[1]];
           let c = gameBoard[win[2]];
+
           if (a == b && b == c && a != "") {
             for (let i of win) {
               gameCells[i].classList.add("winning-game-cell");
             }
             gameOver = true;
+            if (a == playerO) {
+              alert("You lose!");
+            } else if (a == playerX) {
+              alert("You Win!");
+            }
             return;
           }
+        }
+        if (!gameBoard.includes("")) {
+          gameOver === true;
+          alert("Draw");
         }
       }
       function restartGame() {

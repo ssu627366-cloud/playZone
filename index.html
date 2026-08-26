@@ -140,15 +140,6 @@
             required
           />
         </div>
-        <div class="input-group">
-          <i class="bx bx-lock"></i>
-          <input
-            type="password"
-            placeholder="confirm password"
-            id="confirm"
-            required
-          />
-        </div>
 
         <button class="btn">Submit</button>
       </form>
@@ -156,19 +147,27 @@
 
     <!-- javaScript -->
     <script>
+      const users = localStorage.getItem("users")
+        ? JSON.parse(localStorage.getItem("users"))
+        : [{ userName: "Lily", password: "123456" }];
+      //  localStorage.setItem("users", JSON.stringify(users));
       const form = document.getElementById("form");
       form.addEventListener("submit", function (event) {
         event.preventDefault();
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        const confirm = document.getElementById("confirm").value;
+        const loginUser = users.find((user) => user.userName === username);
+        if (!loginUser) {
+          alert("user not found");
+        }
         if (
-          username === "Lily" &&
-          password === "123456" &&
-          confirm === "123456"
+          loginUser.userName === username &&
+          loginUser.password === password
         ) {
           alert("Log in successful");
           window.location.href = "chooseGames.html";
+        } else {
+          alert("User Name or Password is incorret");
         }
       });
     </script>

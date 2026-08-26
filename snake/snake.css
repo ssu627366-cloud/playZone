@@ -1,0 +1,396 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #42108a, #12002e 60%, #08001b);
+  color: white;
+}
+
+/* header */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header h2 {
+  font-size: 48px;
+  font-weight: 900;
+  color: #49f44c;
+  text-shadow: 0 0 15px #88df5d;
+}
+header p {
+  font-size: 18px;
+  margin-top: 5px;
+  color: #eee;
+}
+
+/* game */
+.game-container {
+  width: 96%;
+  max-width: 1450px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 15px;
+  align-items: stretch;
+}
+
+/* pannel */
+.panel {
+  background: linear-gradient(
+    180deg,
+    rgba(55, 0, 130, 0.9),
+    rgba(20, 0, 70, 0.95)
+  );
+  border: 2px solid #6b2cff;
+  border-radius: 25px;
+  padding: 15px;
+  box-shadow:
+    0 0 5px #4e00ff,
+    inset 0 0 15px rgba(100, 0, 255, 0.4);
+}
+
+.panel-title {
+  font-size: 22px;
+  font-weight: bold;
+  padding: 10px;
+  border-bottom: 2px solid #651eff;
+  margin-bottom: 15px;
+}
+
+/* players*/
+.player {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #f0e463, #e9ed11);
+  border: 2px solid #eed70b;
+  transition: 0.3s;
+}
+
+.player.p2 {
+  background: linear-gradient(90deg, #008cff, #0062ff);
+  border-color: #35b7ff;
+}
+
+.player.active {
+  transform: scale(1.04);
+  box-shadow: 0 0 20px #1e00ff;
+  border-color: #0008ff;
+}
+
+.player-name {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.player-score {
+  font-size: 20px;
+  font-weight: bold;
+}
+.left-panel,
+.right-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.left-panel {
+  display: flex;
+  flex-direction: column;
+}
+.left-panel .panel:last-child {
+  margin-top: auto;
+}
+.right-panel {
+  display: flex;
+  flex-direction: column;
+}
+.right-panel .panel:last-child {
+  margin-top: auto;
+}
+
+/* board */
+.board {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  aspect-ratio: 10/6;
+  border: 5px solid #7b2cff;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #210052;
+  box-shadow:
+    0 0 30px #6c00ff,
+    inset 0 0 30px #3500a0;
+}
+
+.cell {
+  position: relative;
+  display: flex;
+  justify-content: right;
+  align-items: flex-start;
+  padding-top: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  border: 1px solid rgba(235, 232, 232, 0.15);
+  overflow: hidden;
+}
+
+.cell:nth-child(odd) {
+  background: #45c7f3;
+}
+
+.cell:nth-child(even) {
+  background: #7b2df2;
+}
+
+/*right*/
+
+.tokens {
+  position: absolute;
+  bottom: 3px;
+  left: 3px;
+  display: flex;
+  gap: 2px;
+  z-index: 20;
+}
+
+.token {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 0 10px white;
+}
+
+.token1 {
+  background: #f0ec0f;
+}
+
+.token2 {
+  background: #008cff;
+}
+
+/* snack leader*/
+
+.obstacle {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  font-size: 45px;
+}
+
+/* simple visual */
+
+.snake {
+  color: #49ff00;
+  text-shadow: 0 0 10px #00ff00;
+}
+
+.ladder {
+  color: #ff9800;
+  text-shadow: 0 0 10px #ff6600;
+}
+
+/* right pannel*/
+
+.dice-box {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dice {
+  width: 100px;
+  height: 100px;
+  margin: 10px auto 20px;
+  border-radius: 18px;
+  background: #e21c2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 65px;
+  margin: auto;
+  box-shadow: 0 0 20px #ff0033;
+  transition: 0.2s;
+}
+
+.dice.rolling {
+  animation: roll 0.6s linear;
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: rotate(90deg) scale(1.15);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.9);
+  }
+
+  75% {
+    transform: rotate(270deg) scale(1.15);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* btn */
+
+button {
+  width: 100%;
+  border: none;
+  padding: 14px;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.roll-btn {
+  background: linear-gradient(90deg, #ffd600, #ff9d00);
+  color: #351000;
+  box-shadow: 0 0 15px #ffca00;
+  margin-top: 15px;
+}
+
+.new-btn {
+  margin-top: 12px;
+  background: linear-gradient(90deg, #00e65c, #00c853);
+  color: white;
+}
+
+.home-btn {
+  margin-top: 10px;
+  background: linear-gradient(90deg, #8e2cff, #bd00ff);
+  color: white;
+}
+
+/* turn*/
+.turn {
+  text-align: center;
+  margin: 15px 0;
+  padding: 10px;
+  border-radius: 15px;
+  background: #55e5db;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #065783;
+}
+
+/*message*/
+.message {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  pointer-events: none;
+  padding: 30px 50px;
+  border-radius: 25px;
+  background: linear-gradient(135deg, #7dfd71, #64c205);
+  box-shadow: 0 0 40px #04733a;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 100;
+  transition: 0.3s;
+}
+
+.message.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* responsive*/
+
+@media (max-width: 1024px) {
+  .game-container {
+    grid-template-columns: 3fr 1fr;
+    align-items: stretch;
+  }
+
+  .right-panel {
+    display: grid;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .left-panel {
+    display: none;
+  }
+  .title {
+    font-size: 35px;
+  }
+  .right-panel > * {
+    width: 100%;
+    margin: 0;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .game-container > * {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .game-container {
+    width: 98%;
+    grid-template-columns: 1fr;
+  }
+
+  .right-panel {
+    display: block;
+  }
+
+  .cell {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  .token {
+    width: 20px;
+    height: 20px;
+    font-size: 8px;
+  }
+
+  .dice {
+    width: 75px;
+    height: 75px;
+    font-size: 45px;
+  }
+
+  .title {
+    font-size: 27px;
+  }
+  .left-panel {
+    display: none;
+  }
+}

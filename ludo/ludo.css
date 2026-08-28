@@ -492,3 +492,45 @@ body {
     border-width: 2px;
   }
 }
+.path > div {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+/* Tokens */
+.moving-token {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 2px solid white;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+
+  position: relative;
+  z-index: 10;
+}
+.path > div:has(.moving-token:nth-child(3)) .moving-token {
+  width: 18px;
+  height: 18px;
+  border-width: 1px;
+}
+
+.path > div:has(.moving-token:nth-child(4)) .moving-token {
+  width: 16px;
+  height: 16px;
+  border-width: 1px;
+}

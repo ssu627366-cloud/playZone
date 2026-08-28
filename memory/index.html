@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Memories Card Game</title>
+
+    <link rel="stylesheet" href="memory.css" />
+  </head>
+
+  <body>
+    <!--header -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">🧠</div>
+
+        <div>
+          <h1>Memories</h1>
+          <p>Find Matching Pairs</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- main -->
+    <main class="main">
+      <!-- left -->
+      <aside class="settings-panel">
+        <h2>⚙️ Game Settings</h2>
+        <div class="setting-group">
+          <h3>Grid Size</h3>
+          <div class="option-group">
+            <button class="grid-btn active" data-size="4">4X4</button>
+
+            <button class="grid-btn" data-size="6">6X6</button>
+          </div>
+        </div>
+
+        <!-- Difficulty -->
+
+        <div class="setting-group">
+          <h3>Difficulty</h3>
+          <div class="option-group">
+            <button class="difficulty-btn active">Easy</button>
+            <button class="difficulty-btn">Normal</button>
+            <button class="difficulty-btn">Hard</button>
+          </div>
+        </div>
+        <button id="new-game-btn" class="new-game-btn">New Game</button>
+      </aside>
+
+      <!--game -->
+
+      <section class="game-section">
+        <!-- Statistics -->
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+
+            <div>
+              <span>Score</span>
+              <strong id="score">0</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">⏱️</div>
+
+            <div>
+              <span>Time</span>
+              <strong id="time">00:00</strong>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🧠</div>
+
+            <div>
+              <span>Moves</span>
+              <strong id="moves">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Board -->
+        <div id="game-board" class="game-board">
+          <!-- JS creates cards here -->
+        </div>
+        <!-- Hint -->
+
+        <div class="hint">💡 Find and click two cards with the same image!</div>
+      </section>
+
+      <!-- ============ HOW TO PLAY ============ -->
+
+      <aside class="how-to-play">
+        <h2>❓ How to Play</h2>
+
+        <div class="instruction">
+          <div class="instruction-icon">🔢</div>
+
+          <div>
+            <h3>1. Choose Grid Size</h3>
+            <p>Select 4X4, 5X5 or 6X6 from the settings.</p>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="instruction-icon">👆</div>
+
+          <div>
+            <h3>2. Tap to Flip</h3>
+            <p>Click or tap a card to reveal its image.</p>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="instruction-icon">🧠</div>
+
+          <div>
+            <h3>3. Find Matching Pairs</h3>
+            <p>Flip two cards. If they match, they stay open.</p>
+          </div>
+        </div>
+
+        <div class="instruction">
+          <div class="instruction-icon">🎉</div>
+
+          <div>
+            <h3>4. Complete the Game</h3>
+            <p>Match all pairs with fewer moves and time!</p>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- win -->
+
+    <div id="win-modal" class="modal">
+      <div class="modal-content">
+        <div class="win-icon">🎉</div>
+
+        <h2>You Win!</h2>
+        <p>Congratulations!</p>
+
+        <div class="result">
+          <div>
+            <span>Score</span>
+            <strong id="final-score">0</strong>
+          </div>
+
+          <div>
+            <span>Moves</span>
+            <strong id="final-moves">0</strong>
+          </div>
+
+          <div>
+            <span>Time</span>
+            <strong id="final-time">00:00</strong>
+          </div>
+        </div>
+
+        <button id="play-again-btn" class="new-game-btn">Play Again</button>
+      </div>
+    </div>
+
+    <script src="memory.js"></script>
+  </body>
+</html>

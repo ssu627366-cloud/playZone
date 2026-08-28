@@ -196,11 +196,6 @@ header p {
 
 /* simple visual */
 
-.snake {
-  color: #49ff00;
-  text-shadow: 0 0 10px #00ff00;
-}
-
 .ladder {
   color: #ff9800;
   text-shadow: 0 0 10px #ff6600;

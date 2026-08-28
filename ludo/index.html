@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ludo Game</title>
+
+    <link rel="stylesheet" href="ludo.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- header -->
+      <header class="header">
+        <div class="logo">
+          <span class="dice-logo">⚄</span>
+          <span>Ludo <b>Game</b></span>
+        </div>
+
+        <nav>
+          <a href="../chooseGames.html">Home</a>
+        </nav>
+      </header>
+
+      <!-- main -->
+      <main class="main">
+        <!-- left -->
+        <section class="left-section">
+          <!-- board-->
+          <div class="board">
+            <!-- RED HOME -->
+            <div class="home red-home">
+              <div class="base">
+                <span class="token red-token" data-token="0"></span>
+                <span class="token red-token" data-token="1"></span>
+                <span class="token red-token" data-token="2"></span>
+                <span class="token red-token" data-token="3"></span>
+              </div>
+            </div>
+
+            <!-- BLUE HOME -->
+            <div class="home blue-home">
+              <div class="base">
+                <span class="token blue-token" data-token="0"></span>
+                <span class="token blue-token" data-token="1"></span>
+                <span class="token blue-token" data-token="2"></span>
+                <span class="token blue-token" data-token="3"></span>
+              </div>
+            </div>
+
+            <!-- GREEN HOME -->
+            <div class="home green-home">
+              <div class="base">
+                <span class="token green-token" data-token="0"></span>
+                <span class="token green-token" data-token="1"></span>
+                <span class="token green-token" data-token="2"></span>
+                <span class="token green-token" data-token="3"></span>
+              </div>
+            </div>
+
+            <!-- YELLOW HOME -->
+            <div class="home yellow-home">
+              <div class="base">
+                <span class="token yellow-token" data-token="0"></span>
+                <span class="token yellow-token" data-token="1"></span>
+                <span class="token yellow-token" data-token="2"></span>
+                <span class="token yellow-token" data-token="3"></span>
+              </div>
+            </div>
+
+            <!-- TOP PATH -->
+
+            <div class="path top-path">
+              <div data-cell="0"></div>
+              <div data-cell="1"></div>
+              <div data-cell="2"></div>
+
+              <div class="safe" data-cell="3">⭐</div>
+              <div class="blue-path" data-cell="4"></div>
+              <div class="blue-path safe" data-cell="5">⭐</div>
+
+              <div data-cell="6"></div>
+              <div class="blue-path" data-cell="7"></div>
+              <div data-cell="8"></div>
+
+              <div data-cell="9"></div>
+              <div class="blue-path" data-cell="10"></div>
+              <div data-cell="11"></div>
+
+              <div data-cell="12"></div>
+              <div class="blue-path" data-cell="13"></div>
+              <div data-cell="14"></div>
+
+              <div data-cell="15"></div>
+              <div class="blue-path" data-cell="16"></div>
+              <div data-cell="17"></div>
+            </div>
+            <!-- LEFT PATH -->
+            <!-- LEFT PATH -->
+            <div class="path left-path">
+              <div data-cell="18"></div>
+              <div class="red-path safe" data-cell="19">⭐</div>
+              <div data-cell="20"></div>
+              <div data-cell="21"></div>
+              <div data-cell="22"></div>
+              <div data-cell="23"></div>
+
+              <div data-cell="24"></div>
+              <div class="red-path" data-cell="25"></div>
+              <div class="red-path" data-cell="26"></div>
+              <div class="red-path" data-cell="27"></div>
+              <div class="red-path" data-cell="28"></div>
+              <div class="red-path" data-cell="29"></div>
+
+              <div data-cell="30"></div>
+              <div class="safe" data-cell="31">⭐</div>
+              <div data-cell="32"></div>
+              <div data-cell="33"></div>
+              <div data-cell="34"></div>
+              <div data-cell="35"></div>
+            </div>
+
+            <!-- RIGHT PATH -->
+            <!-- RIGHT PATH -->
+            <div class="path right-path">
+              <div data-cell="36"></div>
+              <div data-cell="37"></div>
+              <div data-cell="38"></div>
+              <div data-cell="39"></div>
+              <div class="safe" data-cell="40">⭐</div>
+              <div data-cell="41"></div>
+
+              <div class="yellow-path" data-cell="42"></div>
+              <div class="yellow-path" data-cell="43"></div>
+              <div class="yellow-path" data-cell="44"></div>
+              <div class="yellow-path" data-cell="45"></div>
+              <div class="yellow-path" data-cell="46"></div>
+              <div data-cell="47"></div>
+
+              <div data-cell="48"></div>
+              <div data-cell="49"></div>
+              <div data-cell="50"></div>
+              <div data-cell="51"></div>
+              <div class="yellow-path safe" data-cell="52">⭐</div>
+              <div data-cell="53"></div>
+            </div>
+            <!-- BOTTOM PATH -->
+            <div class="path bottom-path">
+              <div data-cell="54"></div>
+              <div class="green-path" data-cell="55"></div>
+              <div data-cell="56"></div>
+
+              <div data-cell="57"></div>
+              <div class="green-path" data-cell="58"></div>
+              <div data-cell="59"></div>
+
+              <div data-cell="60"></div>
+              <div class="green-path" data-cell="61"></div>
+              <div data-cell="62"></div>
+
+              <div data-cell="63"></div>
+              <div class="green-path" data-cell="64"></div>
+              <div data-cell="65"></div>
+
+              <div class="green-path safe" data-cell="66">⭐</div>
+              <div class="green-path" data-cell="67"></div>
+              <div class="safe" data-cell="68">⭐</div>
+
+              <div data-cell="69"></div>
+              <div data-cell="70"></div>
+              <div data-cell="71"></div>
+            </div>
+            <!-- CENTER -->
+            <div class="center">
+              <div class="triangle green"></div>
+              <div class="triangle yellow"></div>
+              <div class="triangle blue"></div>
+              <div class="triangle red"></div>
+            </div>
+          </div>
+
+          <!-- DICE -->
+          <div class="dice-area">
+            <div id="dice" class="dice">⚄</div>
+
+            <button id="rollBtn">🎲 &nbsp; Roll Dice</button>
+          </div>
+        </section>
+
+        <!-- RIGHT SIDE -->
+        <aside class="right-section">
+          <!-- PLAYERS -->
+          <div class="card players-card">
+            <h2>👥 &nbsp; Players</h2>
+
+            <div class="player active-player" id="player1">
+              <span class="player-dot red-dot"></span>
+              <span>Player 1 (Red)</span>
+              <span class="crown">♛</span>
+            </div>
+
+            <div class="player" id="player2">
+              <span class="player-dot blue-dot"></span>
+              <span>Player 2 (Blue)</span>
+            </div>
+
+            <div class="player" id="player3">
+              <span class="player-dot green-dot"></span>
+              <span>Player 3 (Green)</span>
+            </div>
+
+            <div class="player" id="player4">
+              <span class="player-dot yellow-dot"></span>
+              <span>Player 4 (Yellow)</span>
+            </div>
+          </div>
+
+          <!-- GAME CONTROL -->
+          <div class="card controls">
+            <button id="startBtn" class="start-btn">▶ &nbsp; Start Game</button>
+
+            <button id="resetBtn" class="reset-btn">↻ &nbsp; Reset Game</button>
+          </div>
+
+          <!-- HOW TO PLAY -->
+          <div class="card how-to">
+            <h2>📖 &nbsp; How to Play</h2>
+            <p>
+              <span>1</span>
+              Each player rolls the dice.
+            </p>
+            <p>
+              <span>2</span>
+              Move your tokens according to the dice.
+            </p>
+
+            <p>
+              <span>3</span>
+              Get all your tokens to the home center.
+            </p>
+
+            <p>
+              <span>4</span>
+              First player to finish all tokens wins!
+            </p>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="ludo.js"></script>
+  </body>
+</html>

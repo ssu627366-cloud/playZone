@@ -149,7 +149,6 @@ function rollDice() {
 // ===============================
 // PLAYER TURN
 // ===============================
-
 function playTurn() {
   if (isRolling) {
     return;
@@ -159,7 +158,18 @@ function playTurn() {
 
   rollBtn.disabled = true;
 
-  diceValue = Math.floor(Math.random() * 6) + 1;
+  // 🎲 Player 1 Dice
+  if (currentPlayer === 0) {
+    // 50% chance = 6
+    if (Math.random() < 0.5) {
+      diceValue = 6;
+    } else {
+      diceValue = Math.floor(Math.random() * 5) + 1;
+    }
+  } else {
+    // Auto players = normal random
+    diceValue = Math.floor(Math.random() * 6) + 1;
+  }
 
   diceAnimation(() => {
     movePlayerToken();

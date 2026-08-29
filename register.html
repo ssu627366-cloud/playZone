@@ -3,12 +3,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Boxicons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+    />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="image/logo.jpg" type="image/x-icon" />
 
-    <title>Login</title>
+    <title>Register</title>
 
     <style>
       * {
@@ -16,6 +23,10 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -31,7 +42,9 @@
         max-width: 400px;
         padding: 40px;
         margin: 15px;
+
         background: #d7d7e2;
+
         border-radius: 20px;
 
         box-shadow:
@@ -42,9 +55,12 @@
       .title {
         text-align: center;
         margin-bottom: 30px;
+
         color: #7c3aed;
+
         font-weight: 600;
         font-size: 28px;
+
         text-transform: uppercase;
         letter-spacing: 2px;
       }
@@ -58,6 +74,7 @@
         padding: 15px 20px;
 
         background: #d7d7e2;
+
         border-radius: 15px;
 
         box-shadow:
@@ -72,9 +89,12 @@
 
       .input-group input {
         width: 100%;
+
         border: none;
         outline: none;
+
         background: transparent;
+
         font-size: 16px;
       }
 
@@ -84,16 +104,19 @@
 
       .btn {
         width: 100%;
+
         padding: 15px;
 
         border: none;
         outline: none;
 
         background: #d7d7e2;
+
         border-radius: 15px;
 
         font-size: 16px;
         font-weight: 600;
+
         color: #7c3aed;
 
         cursor: pointer;
@@ -118,29 +141,42 @@
         transform: scale(0.98);
       }
 
-      .register-link {
+      .login-link {
         margin-top: 20px;
+
         text-align: center;
+
         color: #555;
       }
 
-      .register-link a {
+      .login-link a {
         color: #7c3aed;
+
         text-decoration: none;
+
         font-weight: 600;
       }
 
-      .register-link a:hover {
+      .login-link a:hover {
         text-decoration: underline;
       }
 
       @media (max-width: 480px) {
         .container {
           padding: 30px 20px;
+          margin: 15px;
         }
 
         .title {
           font-size: 24px;
+        }
+
+        .input-group {
+          padding: 13px 15px;
+        }
+
+        .btn {
+          padding: 13px;
         }
       }
     </style>
@@ -148,9 +184,9 @@
 
   <body>
     <div class="container">
-      <h2 class="title">Log In</h2>
+      <h2 class="title">Register</h2>
 
-      <form id="loginForm">
+      <form id="registerForm">
         <!-- Username -->
         <div class="input-group">
           <i class="bx bx-user"></i>
@@ -170,53 +206,81 @@
           />
         </div>
 
-        <button type="submit" class="btn">Log In</button>
+        <!-- Confirm Password -->
+        <div class="input-group">
+          <i class="bx bx-lock-alt"></i>
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            required
+          />
+        </div>
+
+        <!-- Register Button -->
+        <button type="submit" class="btn">Register</button>
       </form>
 
-      <div class="register-link">
-        Don't have an account?
-        <a href="register.html">Register</a>
+      <!-- Login Link -->
+      <div class="login-link">
+        Already have an account?
+        <a href="index.html">Login</a>
       </div>
     </div>
 
     <script>
-      // localStorage ထဲက users ကိုယူမယ်
-      const users = localStorage.getItem("users")
-        ? JSON.parse(localStorage.getItem("users"))
-        : [
-            {
-              userName: "Lily",
-              password: "123456",
-            },
-          ];
+      const registerForm = document.getElementById("registerForm");
 
-      const loginForm = document.getElementById("loginForm");
-
-      loginForm.addEventListener("submit", function (event) {
+      registerForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
+        // Get input values
         const username = document.getElementById("username").value.trim();
 
         const password = document.getElementById("password").value;
 
-        // Username ရှာမယ်
-        const loginUser = users.find((user) => user.userName === username);
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
 
-        // User မတွေ့ရင်
-        if (!loginUser) {
-          alert("User not found!");
+        // Check password
+        if (password !== confirmPassword) {
+          alert("Passwords do not match!");
+
           return;
         }
 
-        // Password စစ်မယ်
-        if (loginUser.password === password) {
-          alert("Log in successful!");
+        // Get users from localStorage
+        const users = localStorage.getItem("users")
+          ? JSON.parse(localStorage.getItem("users"))
+          : [];
 
-          // Game selection page
-          window.location.href = "chooseGames.html";
-        } else {
-          alert("Username or Password is incorrect!");
+        // Check existing username
+        const existingUser = users.find((user) => user.userName === username);
+
+        if (existingUser) {
+          alert("Username already exists!");
+
+          return;
         }
+
+        // Create new user
+        const newUser = {
+          userName: username,
+          password: password,
+        };
+
+        // Add user
+        users.push(newUser);
+
+        // Save to localStorage
+        localStorage.setItem("users", JSON.stringify(users));
+
+        // Success
+        alert("Registration successful!");
+
+        // Go to Login page
+        window.location.href = "index.html";
       });
     </script>
   </body>

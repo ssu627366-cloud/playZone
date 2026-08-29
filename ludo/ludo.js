@@ -41,7 +41,7 @@ const players = [
     color: "green",
     className: "green-token",
 
-    start: 15,
+    start: 28,
 
     // Green middle lane
     home: ["g1", "g2", "g3", "g4", "g5"],
@@ -54,7 +54,7 @@ const players = [
     color: "yellow",
     className: "yellow-token",
 
-    start: 28,
+    start: 15,
 
     // Yellow middle lane
     home: ["y1", "y2", "y3", "y4", "y5"],
@@ -419,7 +419,7 @@ function renderTokens() {
 
       token.classList.add("moving-token", player.className);
 
-      token.textContent = "●";
+      token.textContent = "";
 
       cell.appendChild(token);
     });
@@ -583,3 +583,6 @@ initializeTokens();
 rollBtn.disabled = true;
 
 updatePlayerUI();
+function goHome() {
+  window.location.href = "../chooseGames.html";
+}

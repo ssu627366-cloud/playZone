@@ -51,6 +51,7 @@ body {
   color: #d6a9ff;
   font-size: 15px;
 }
+
 /* main */
 
 .main {
@@ -133,6 +134,7 @@ body {
   cursor: pointer;
   box-shadow: 0 8px 25px rgba(220, 40, 220, 0.3);
   transition: 0.2s;
+  margin-bottom: 5px;
 }
 
 .new-game-btn:hover {

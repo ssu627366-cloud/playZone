@@ -372,3 +372,6 @@ playAgainButton.addEventListener("click", startGame);
 
 /* ================= START ================= */
 startGame();
+function goHome() {
+  window.location.href = "../chooseGames.html";
+}

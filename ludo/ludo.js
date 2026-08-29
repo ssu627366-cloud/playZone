@@ -185,11 +185,15 @@ function diceAnimation(callback) {
 
       dice.textContent = diceFaces[diceValue];
 
-      setTimeout(callback, 400);
+      // 🎲 Show dice result
+      setTimeout(() => {
+        alert(`${players[currentPlayer].name} က ${diceValue} ကျပါတယ် 🎲`);
+
+        callback();
+      }, 400);
     }
   }, 80);
 }
-
 // ===============================
 // MOVE TOKEN
 // ===============================

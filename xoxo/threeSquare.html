@@ -112,7 +112,7 @@
       let currPlayer = playerX;
       let gameBoard = ["", "", "", "", "", "", "", "", ""];
       let gameCells;
-      let settingsButton = document.getElementById("home");
+      let home = document.getElementById("home");
       let winning = [
         [0, 1, 2],
         [3, 4, 5],
@@ -129,10 +129,10 @@
       window.onload = function () {
         gameCells = document.getElementsByClassName("game-cell");
         for (let cell of gameCells) {
-          cell.addEventListener("click", placeCell);
+          cell.addEventListener("click", placeCell); //placeCell funcction call
         }
         restartGameButton = document.getElementById("game-restart-button");
-        restartGameButton.addEventListener("click", restartGame);
+        restartGameButton.addEventListener("click", restartGame); //restart function cll
       };
       // O    nae  X alternate
       function placeCell() {
@@ -209,7 +209,7 @@
           cell.classList.remove("winning-game-cell");
         }
       }
-      settingsButton.addEventListener("click", function () {
+      home.addEventListener("click", function () {
         window.location.href = "index.html";
       });
     </script>

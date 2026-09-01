@@ -72,7 +72,7 @@ function createBoard() {
   updateTokens();
 }
 
-/* snake and laddder*/
+/*go*/
 
 function addObstacles() {
   Object.entries(go).forEach(([start, end]) => {

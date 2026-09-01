@@ -1,16 +1,8 @@
-```html
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Boxicons -->
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-    />
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="image/logo.jpg" type="image/x-icon" />
@@ -189,15 +181,11 @@
       <form id="registerForm">
         <!-- Username -->
         <div class="input-group">
-          <i class="bx bx-user"></i>
-
           <input type="text" id="username" placeholder="Username" required />
         </div>
 
         <!-- Password -->
         <div class="input-group">
-          <i class="bx bx-lock"></i>
-
           <input
             type="password"
             id="password"
@@ -208,8 +196,6 @@
 
         <!-- Confirm Password -->
         <div class="input-group">
-          <i class="bx bx-lock-alt"></i>
-
           <input
             type="password"
             id="confirmPassword"
@@ -231,7 +217,6 @@
 
     <script>
       const registerForm = document.getElementById("registerForm");
-
       registerForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -253,7 +238,7 @@
         // Get users from localStorage
         const users = localStorage.getItem("users")
           ? JSON.parse(localStorage.getItem("users"))
-          : [];
+          : []; //shi yin js array yu ma shi yin htar
 
         // Check existing username
         const existingUser = users.find((user) => user.userName === username);
@@ -285,4 +270,3 @@
     </script>
   </body>
 </html>
-```

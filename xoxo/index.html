@@ -55,6 +55,7 @@
         gap: 50px;
       }
       .game-card {
+        min-width: 0;
         padding: 25px;
         text-align: center;
         border-radius: 25px;
@@ -103,13 +104,15 @@
       }
       .board-3 {
         grid-template-columns: repeat(3, 1fr);
-        width: 270px;
-        height: 270px;
+        width: 100%;
+        max-width: 270px;
+        aspect-ratio: 1/1;
       }
       .board-5 {
         grid-template-columns: repeat(5, 1fr);
-        width: 300px;
-        height: 300px;
+        width: 100%;
+        max-width: 300px;
+        aspect-ratio: 1/1;
       }
       .preview-board span {
         display: flex;

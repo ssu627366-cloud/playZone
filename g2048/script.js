@@ -342,6 +342,6 @@ gameBoard.addEventListener("touchend", function (event) {
 });
 // go home
 settingsButton.addEventListener("click", function () {
-  window.location.href = "../chooseGames.html";
+  window.location.href = "../index.html";
 });
 startGame();

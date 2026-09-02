@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ludo Game</title>
-
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../image/logo.jpg" type="image/x-icon" />
     <link rel="stylesheet" href="ludo.css" />
   </head>
 
@@ -18,7 +19,13 @@
         </div>
 
         <nav>
-          <a href="../chooseGames.html">Home</a>
+          <button
+            class="home-btn"
+            onclick="goHome()"
+            style="background-color: yellow"
+          >
+            🏠 Home
+          </button>
         </nav>
       </header>
 
@@ -219,14 +226,6 @@
             <button id="startBtn" class="start-btn">▶ &nbsp; Start Game</button>
 
             <button id="resetBtn" class="reset-btn">↻ &nbsp; Reset Game</button>
-
-            <button
-              class="home-btn"
-              onclick="goHome()"
-              style="background-color: yellow"
-            >
-              🏠 Home
-            </button>
           </div>
 
           <!-- HOW TO PLAY -->

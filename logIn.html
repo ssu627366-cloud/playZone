@@ -7,7 +7,7 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="image/logo.jpg" type="image/x-icon" />
 
-    <title>Register</title>
+    <title>Login</title>
 
     <style>
       * {
@@ -15,10 +15,6 @@
         padding: 0;
         box-sizing: border-box;
         font-family: "Poppins", sans-serif;
-      }
-
-      html {
-        scroll-behavior: smooth;
       }
 
       body {
@@ -34,9 +30,7 @@
         max-width: 400px;
         padding: 40px;
         margin: 15px;
-
         background: #d7d7e2;
-
         border-radius: 20px;
 
         box-shadow:
@@ -47,12 +41,9 @@
       .title {
         text-align: center;
         margin-bottom: 30px;
-
         color: #7c3aed;
-
         font-weight: 600;
         font-size: 28px;
-
         text-transform: uppercase;
         letter-spacing: 2px;
       }
@@ -61,12 +52,9 @@
         display: flex;
         align-items: center;
         gap: 10px;
-
         margin-bottom: 20px;
         padding: 15px 20px;
-
         background: #d7d7e2;
-
         border-radius: 15px;
 
         box-shadow:
@@ -74,19 +62,11 @@
           inset -5px -5px 10px #a855f7;
       }
 
-      .input-group i {
-        color: #7c3aed;
-        font-size: 20px;
-      }
-
       .input-group input {
         width: 100%;
-
         border: none;
         outline: none;
-
         background: transparent;
-
         font-size: 16px;
       }
 
@@ -96,19 +76,15 @@
 
       .btn {
         width: 100%;
-
         padding: 15px;
-
         border: none;
         outline: none;
 
         background: #d7d7e2;
-
         border-radius: 15px;
 
         font-size: 16px;
         font-weight: 600;
-
         color: #7c3aed;
 
         cursor: pointer;
@@ -133,42 +109,29 @@
         transform: scale(0.98);
       }
 
-      .login-link {
+      .register-link {
         margin-top: 20px;
-
         text-align: center;
-
         color: #555;
       }
 
-      .login-link a {
+      .register-link a {
         color: #7c3aed;
-
         text-decoration: none;
-
         font-weight: 600;
       }
 
-      .login-link a:hover {
+      .register-link a:hover {
         text-decoration: underline;
       }
 
       @media (max-width: 480px) {
         .container {
           padding: 30px 20px;
-          margin: 15px;
         }
 
         .title {
           font-size: 24px;
-        }
-
-        .input-group {
-          padding: 13px 15px;
-        }
-
-        .btn {
-          padding: 13px;
         }
       }
     </style>
@@ -176,9 +139,9 @@
 
   <body>
     <div class="container">
-      <h2 class="title">Register</h2>
+      <h2 class="title">Log In</h2>
 
-      <form id="registerForm">
+      <form id="loginForm">
         <!-- Username -->
         <div class="input-group">
           <input type="text" id="username" placeholder="Username" required />
@@ -194,78 +157,77 @@
           />
         </div>
 
-        <!-- Confirm Password -->
-        <div class="input-group">
-          <input
-            type="password"
-            id="confirmPassword"
-            placeholder="Confirm Password"
-            required
-          />
-        </div>
-
-        <!-- Register Button -->
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">Log In</button>
       </form>
 
-      <!-- Login Link -->
-      <div class="login-link">
-        Already have an account?
-        <a href="logIn.html">Login</a>
+      <div class="register-link">
+        Don't have an account?
+        <a href="register.html">Register</a>
       </div>
     </div>
 
     <script>
-      const registerForm = document.getElementById("registerForm");
-      registerForm.addEventListener("submit", function (event) {
+      // ===============================
+      // GET USERS FROM LOCAL STORAGE
+      // ===============================
+
+      const users = localStorage.getItem("users")
+        ? JSON.parse(localStorage.getItem("users"))
+        : [
+            {
+              userName: "Lily",
+              password: "123456",
+            },
+          ];
+
+      // ===============================
+      // LOGIN FORM
+      // ===============================
+
+      const loginForm = document.getElementById("loginForm");
+
+      loginForm.addEventListener("submit", function (event) {
+        // Prevent page refresh
         event.preventDefault();
 
-        // Get input values
+        // Get username and password
         const username = document.getElementById("username").value.trim();
 
         const password = document.getElementById("password").value;
 
-        const confirmPassword =
-          document.getElementById("confirmPassword").value;
+        // ===============================
+        // FIND USERNAME
+        // ===============================
 
-        // Check password
-        if (password !== confirmPassword) {
-          alert("Passwords do not match!");
+        const loginUser = users.find((user) => user.userName === username);
 
+        // ===============================
+        // USER NOT FOUND
+        // ===============================
+
+        if (!loginUser) {
+          alert("User not found!");
           return;
         }
 
-        // Get users from localStorage
-        const users = localStorage.getItem("users")
-          ? JSON.parse(localStorage.getItem("users"))
-          : []; //shi yin js array yu ma shi yin htar
+        // ===============================
+        // CHECK PASSWORD
+        // ===============================
 
-        // Check existing username
-        const existingUser = users.find((user) => user.userName === username);
+        if (loginUser.password === password) {
+          // Save login status
+          localStorage.setItem("isLoggedIn", "true");
 
-        if (existingUser) {
-          alert("Username already exists!");
+          // Save current username
+          localStorage.setItem("currentUser", username);
 
-          return;
+          alert("Log in successful!");
+
+          // Go to home page
+          window.location.href = "index.html";
+        } else {
+          alert("Username or Password is incorrect!");
         }
-
-        // Create new user
-        const newUser = {
-          userName: username,
-          password: password,
-        };
-
-        // Add user
-        users.push(newUser);
-
-        // Save to localStorage
-        localStorage.setItem("users", JSON.stringify(users));
-
-        // Success
-        alert("Registration successful!");
-
-        // Go to Login page
-        window.location.href = "logIn.html";
       });
     </script>
   </body>

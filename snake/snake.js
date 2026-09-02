@@ -305,7 +305,7 @@ function newGame() {
 }
 
 function goHome() {
-  window.location.href = "../chooseGames.html";
+  window.location.href = "../index.html";
 }
 
 createBoard();

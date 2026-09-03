@@ -43,10 +43,6 @@
         </h1>
         <p>Enjoy classic and modern games in one place.</p>
         <p>Challenge yourself , play with friends and beat your high score!</p>
-
-        <div>
-          <button class="btn primary-btn">Play Now</button>
-        </div>
       </div>
       <div>
         <img src="image/background.png" alt="" />
@@ -349,10 +345,7 @@
           e.preventDefault();
 
           localStorage.removeItem("isLoggedIn");
-
-          loginBtn.textContent = "Log In";
-          loginBtn.href = "login.html";
-
+          window.location.reload();
           alert("You have been logged out.");
         });
       }

@@ -352,11 +352,7 @@
 
       // Get all game buttons
       const gameButtons = document.querySelectorAll(".play-btn");
-
-      // ===============================
       // BLOCK GAME IF NOT LOGGED IN
-      // ===============================
-
       gameButtons.forEach(function (button) {
         button.addEventListener("click", function (event) {
           // If user is NOT logged in
@@ -366,7 +362,7 @@
             alert("Please Log In first!");
 
             // Go to login page
-            window.location.href = "login.html";
+            window.location.href = "logIn.html";
           }
         });
       });
@@ -381,7 +377,7 @@
             alert("Please Log In first!");
 
             // Go to login page
-            window.location.href = "login.html";
+            window.location.href = "logIn.html";
           }
         });
       });

@@ -320,12 +320,12 @@
         <div class="footer-column">
           <h3>Top Games</h3>
           <ul class="footer-links">
-            <li><a href="chess/index.html">Chess</a></li>
-            <li><a href="xoxo/index.html">XOXO</a></li>
-            <li><a href="snake/index.html">Snake</a></li>
-            <li><a href="g2048/index.html">2048</a></li>
-            <li><a href="memory/index.html">Memory</a></li>
-            <li><a href="ludo/index.html">Ludo</a></li>
+            <li><a href="chess/index.html" class="game">Chess</a></li>
+            <li><a href="xoxo/index.html" class="game">XOXO</a></li>
+            <li><a href="snake/index.html" class="game">Snake</a></li>
+            <li><a href="g2048/index.html" class="game">2048</a></li>
+            <li><a href="memory/index.html" class="game">Memory</a></li>
+            <li><a href="ludo/index.html" class="game">Ludo</a></li>
           </ul>
         </div>
         <div class="footer-column">
@@ -365,6 +365,21 @@
       // ===============================
 
       gameButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
+          // If user is NOT logged in
+          if (isLoggedIn !== "true") {
+            event.preventDefault();
+
+            alert("Please Log In first!");
+
+            // Go to login page
+            window.location.href = "login.html";
+          }
+        });
+      });
+      const game = document.querySelectorAll(".game");
+
+      game.forEach(function (button) {
         button.addEventListener("click", function (event) {
           // If user is NOT logged in
           if (isLoggedIn !== "true") {

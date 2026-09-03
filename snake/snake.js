@@ -1,4 +1,4 @@
-const boardSize = 60; //
+const boardSize = 60;
 const go = {
   4: 25,
   9: 31,
@@ -150,7 +150,7 @@ function playerMove(number) {
     newPosition = oldPosition;
   }
   moveStepByStep(oldPosition, newPosition, () => {
-    checkSnakeOrLadder(); ////////
+    checkSnakeOrLadder();
   });
 }
 
@@ -183,9 +183,7 @@ function checkSnakeOrLadder() {
   const player = players[currentPlayer];
   const position = player.position;
 
-  /*
-        LADDER
-    */
+  /* LADDER*/
 
   if (go[position]) {
     const destination = go[position];

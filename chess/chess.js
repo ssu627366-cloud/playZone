@@ -1,7 +1,3 @@
-/* =====================================================
-   CHESS GAME
-===================================================== */
-
 const boardElement = document.getElementById("board");
 
 const turnText = document.getElementById("turnText");
@@ -34,9 +30,7 @@ const modalText = document.getElementById("modalText");
 
 const modalNewGame = document.getElementById("modalNewGame");
 
-/* =====================================================
-   PIECES
-===================================================== */
+/* pieces */
 
 const PIECES = {
   wK: "♔",
@@ -54,9 +48,7 @@ const PIECES = {
   bP: "♟",
 };
 
-/* =====================================================
-   INITIAL BOARD
-===================================================== */
+/* INITIAL BOARD */
 
 const initialBoard = [
   ["bR", "bN", "bB", "bQ", "bK", "bB", "bN", "bR"],
@@ -68,10 +60,6 @@ const initialBoard = [
   ["wP", "wP", "wP", "wP", "wP", "wP", "wP", "wP"],
   ["wR", "wN", "wB", "wQ", "wK", "wB", "wN", "wR"],
 ];
-
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 let board = [];
 
@@ -95,9 +83,7 @@ let pendingPromotion = null;
 
 let gameOver = false;
 
-/* =====================================================
-   TIMER
-===================================================== */
+/*TIMERs */
 
 let whiteTime = 600;
 
@@ -105,9 +91,7 @@ let blackTime = 600;
 
 let timerInterval = null;
 
-/* =====================================================
-   CASTLING
-===================================================== */
+/* CASTLING*/
 
 let castlingRights = {
   wKing: true,
@@ -116,9 +100,7 @@ let castlingRights = {
   bQueen: true,
 };
 
-/* =====================================================
-   START GAME
-===================================================== */
+/* stART GAME */
 
 function initGame() {
   board = copyBoard(initialBoard);
@@ -165,9 +147,7 @@ function initGame() {
   startTimer();
 }
 
-/* =====================================================
-   DRAW BOARD
-===================================================== */
+/* draw Move */
 
 function updateBoard() {
   boardElement.innerHTML = "";
@@ -187,9 +167,7 @@ function updateBoard() {
       square.dataset.row = row;
       square.dataset.col = col;
 
-      /* ===============================
-         SELECTED
-      =============================== */
+      /* seleted */
 
       if (
         selectedSquare &&
@@ -199,9 +177,7 @@ function updateBoard() {
         square.classList.add("selected");
       }
 
-      /* ===============================
-         VALID MOVE
-      =============================== */
+      /* valid move */
 
       const isValidMove = validMoves.some(
         (move) => move.row === row && move.col === col,
@@ -215,9 +191,7 @@ function updateBoard() {
         }
       }
 
-      /* ===============================
-         LAST MOVE
-      =============================== */
+      /* last move*/
 
       if (
         lastMove &&
@@ -227,9 +201,7 @@ function updateBoard() {
         square.classList.add("last-move");
       }
 
-      /* ===============================
-         COORDINATES
-      =============================== */
+      /*COORDINATES */
 
       if (col === 0) {
         const rank = document.createElement("span");
@@ -251,9 +223,7 @@ function updateBoard() {
         square.appendChild(file);
       }
 
-      /* ===============================
-         PIECE
-      =============================== */
+      /* piece */
 
       const piece = board[row][col];
 
@@ -273,9 +243,7 @@ function updateBoard() {
         square.appendChild(pieceElement);
       }
 
-      /* ===============================
-         CLICK
-      =============================== */
+      /* CLICK */
 
       square.addEventListener("click", () => handleSquareClick(row, col));
 
@@ -284,9 +252,7 @@ function updateBoard() {
   }
 }
 
-/* =====================================================
-   CLICK SQUARE
-===================================================== */
+/*   CLICK SQUARE */
 
 function handleSquareClick(row, col) {
   if (gameOver) {
@@ -295,9 +261,7 @@ function handleSquareClick(row, col) {
 
   const piece = board[row][col];
 
-  /* =================================================
-     IF CLICK VALID MOVE
-  ================================================= */
+  /* IF CLICK VALID MOVE*/
 
   const clickedMove = validMoves.find(
     (move) => move.row === row && move.col === col,
@@ -309,9 +273,7 @@ function handleSquareClick(row, col) {
     return;
   }
 
-  /* =================================================
-     SELECT PIECE
-  ================================================= */
+  /* selete piece*/
 
   if (piece && piece[0] === currentPlayer) {
     selectedSquare = {
@@ -326,9 +288,7 @@ function handleSquareClick(row, col) {
     return;
   }
 
-  /* =================================================
-     CLEAR
-  ================================================= */
+  /*clean */
 
   selectedSquare = null;
 
@@ -337,9 +297,7 @@ function handleSquareClick(row, col) {
   updateBoard();
 }
 
-/* =====================================================
-   GET LEGAL MOVES
-===================================================== */
+/* GET LEGAL MOVES */
 
 function getLegalMoves(row, col) {
   const piece = board[row][col];
@@ -387,9 +345,7 @@ function getLegalMoves(row, col) {
   return legalMoves;
 }
 
-/* =====================================================
-   GET PSEUDO MOVES
-===================================================== */
+/* GET PSEUDO MOVE*/
 
 function getPseudoMoves(position, row, col) {
   const piece = position[row][col];
@@ -404,9 +360,7 @@ function getPseudoMoves(position, row, col) {
 
   const moves = [];
 
-  /* =================================================
-     PAWN
-  ================================================= */
+  /*pwan */
 
   if (type === "P") {
     const direction = color === "w" ? -1 : 1;
@@ -459,9 +413,7 @@ function getPseudoMoves(position, row, col) {
     return moves;
   }
 
-  /* =================================================
-     KNIGHT
-  ================================================= */
+  /* knight */
 
   if (type === "N") {
     const knightMoves = [
@@ -497,9 +449,7 @@ function getPseudoMoves(position, row, col) {
     return moves;
   }
 
-  /* =================================================
-     BISHOP
-  ================================================= */
+  /* bishop */
 
   if (type === "B") {
     addSlidingMoves(moves, position, row, col, color, [
@@ -512,9 +462,7 @@ function getPseudoMoves(position, row, col) {
     return moves;
   }
 
-  /* =================================================
-     ROOK
-  ================================================= */
+  /* rock */
 
   if (type === "R") {
     addSlidingMoves(moves, position, row, col, color, [
@@ -527,9 +475,7 @@ function getPseudoMoves(position, row, col) {
     return moves;
   }
 
-  /* =================================================
-     QUEEN
-  ================================================= */
+  /* QUEEN */
 
   if (type === "Q") {
     addSlidingMoves(moves, position, row, col, color, [
@@ -547,9 +493,7 @@ function getPseudoMoves(position, row, col) {
     return moves;
   }
 
-  /* =================================================
-     KING
-  ================================================= */
+  /* KING */
 
   if (type === "K") {
     for (let dr = -1; dr <= 1; dr++) {
@@ -601,9 +545,7 @@ function getPseudoMoves(position, row, col) {
   return moves;
 }
 
-/* =====================================================
-   SLIDING MOVES
-===================================================== */
+/* SLIDING MOVES*/
 
 function addSlidingMoves(moves, position, row, col, color, directions) {
   for (const [dr, dc] of directions) {
@@ -640,9 +582,7 @@ function addSlidingMoves(moves, position, row, col, color, directions) {
   }
 }
 
-/* =====================================================
-   MAKE MOVE
-===================================================== */
+/*make move */
 
 function makeMove(fromRow, fromCol, toRow, toCol) {
   const movingPiece = board[fromRow][fromCol];
@@ -768,9 +708,7 @@ function makeMove(fromRow, fromCol, toRow, toCol) {
   finishTurn();
 }
 
-/* =====================================================
-   CASTLING RIGHTS
-===================================================== */
+/* CASTLING RIGHTS */
 
 function updateCastlingRights(piece, row, col) {
   if (piece === "wK") {
@@ -822,9 +760,7 @@ function updateCapturedRookRights(piece, row, col) {
   }
 }
 
-/* =====================================================
-   KING IN CHECK
-===================================================== */
+/* KING IN CHECK */
 
 function isKingInCheck(position, color) {
   let kingRow = -1;
@@ -870,9 +806,7 @@ function isKingInCheck(position, color) {
   return false;
 }
 
-/* =====================================================
-   ATTACK MOVES
-===================================================== */
+/*ATTACK MOVES */
 
 function getAttackMoves(position, row, col) {
   const piece = position[row][col];
@@ -1022,9 +956,7 @@ function getAttackMoves(position, row, col) {
   return moves;
 }
 
-/* =====================================================
-   CASTLING
-===================================================== */
+/*CASTLING*/
 
 function canCastle(position, color, side) {
   const row = color === "w" ? 7 : 0;
@@ -1085,9 +1017,7 @@ function canCastle(position, color, side) {
   return false;
 }
 
-/* =====================================================
-   CHECKMATE
-===================================================== */
+/* CHECKMATE */
 
 function isCheckmate(color) {
   if (!isKingInCheck(board, color)) {
@@ -1097,9 +1027,7 @@ function isCheckmate(color) {
   return !hasAnyLegalMove(color);
 }
 
-/* =====================================================
-   STALEMATE
-===================================================== */
+/*STALEMATE */
 
 function isStalemate(color) {
   if (isKingInCheck(board, color)) {
@@ -1109,9 +1037,7 @@ function isStalemate(color) {
   return !hasAnyLegalMove(color);
 }
 
-/* =====================================================
-   HAS LEGAL MOVE
-===================================================== */
+/*HAS LEGAL MOVE */
 
 function hasAnyLegalMove(color) {
   const oldPlayer = currentPlayer;
@@ -1139,9 +1065,7 @@ function hasAnyLegalMove(color) {
   return false;
 }
 
-/* =====================================================
-   FINISH TURN
-===================================================== */
+/*FINISH TURN */
 
 function finishTurn() {
   currentPlayer = currentPlayer === "w" ? "b" : "w";
@@ -1175,9 +1099,7 @@ function finishTurn() {
   }
 }
 
-/* =====================================================
-   PROMOTION
-===================================================== */
+/* PROMOTION */
 
 document.querySelectorAll(".promotion-options button").forEach((button) => {
   button.addEventListener("click", () => {
@@ -1199,9 +1121,7 @@ document.querySelectorAll(".promotion-options button").forEach((button) => {
   });
 });
 
-/* =====================================================
-   MOVE NOTATION
-===================================================== */
+/* MOVE NOTATION */
 
 function createNotation(piece, fromRow, fromCol, toRow, toCol, captured) {
   const files = "abcdefgh";
@@ -1222,9 +1142,7 @@ function createNotation(piece, fromRow, fromCol, toRow, toCol, captured) {
   return names[piece[1]] + from + (captured ? "x" : "-") + to;
 }
 
-/* =====================================================
-   UI
-===================================================== */
+/* UI */
 
 function updateUI() {
   const player = currentPlayer === "w" ? "White" : "Black";
@@ -1240,9 +1158,7 @@ function updateUI() {
   renderCaptured();
 }
 
-/* =====================================================
-   HISTORY
-===================================================== */
+/* history */
 
 function renderHistory() {
   if (moveHistory.length === 0) {
@@ -1278,9 +1194,7 @@ function renderHistory() {
   }
 }
 
-/* =====================================================
-   CAPTURED
-===================================================== */
+/* CAPTURED */
 
 function renderCaptured() {
   whiteCapturedElement.textContent = capturedWhite
@@ -1292,9 +1206,7 @@ function renderCaptured() {
     .join(" ");
 }
 
-/* =====================================================
-   TIMER
-===================================================== */
+/*TIMER */
 
 function startTimer() {
   stopTimer();
@@ -1354,9 +1266,7 @@ function formatTime(seconds) {
   return String(minutes).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
 }
 
-/* =====================================================
-   UNDO
-===================================================== */
+/*  UNDO*/
 
 function undoMove() {
   if (undoHistory.length === 0 || gameOver) {
@@ -1394,9 +1304,7 @@ function undoMove() {
   startTimer();
 }
 
-/* =====================================================
-   BUTTONS
-===================================================== */
+/* BUTTONS */
 
 newGameBtn.addEventListener("click", initGame);
 
@@ -1404,17 +1312,13 @@ resetBtn.addEventListener("click", initGame);
 
 undoBtn.addEventListener("click", undoMove);
 
-/* =====================================================
-   SETTINGS
-===================================================== */
+/* SETTINGS */
 
 settingsBtn.addEventListener("click", () => {
   alert("Settings is not available yet.");
 });
 
-/* =====================================================
-   GAME OVER MODAL
-===================================================== */
+/* GAME OVER MODAL */
 
 function showGameOver(title, text) {
   modalTitle.textContent = title;
@@ -1424,9 +1328,7 @@ function showGameOver(title, text) {
   gameModal.classList.add("show");
 }
 
-/* =====================================================
-   PLAY AGAIN
-===================================================== */
+/* PLAY AGAIN*/
 
 modalNewGame.addEventListener("click", () => {
   gameModal.classList.remove("show");
@@ -1434,24 +1336,18 @@ modalNewGame.addEventListener("click", () => {
   initGame();
 });
 
-/* =====================================================
-   COPY BOARD
-===================================================== */
+/* COPY BOARD */
 
 function copyBoard(position) {
   return position.map((row) => [...row]);
 }
 
-/* =====================================================
-   BOARD CHECK
-===================================================== */
+/*    BOARD CHECK*/
 
 function inBoard(row, col) {
   return row >= 0 && row < 8 && col >= 0 && col < 8;
 }
 
-/* =====================================================
-   START
-===================================================== */
+/* START */
 
 initGame();

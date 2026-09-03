@@ -167,10 +167,7 @@
     </div>
 
     <script>
-      // ===============================
       // GET USERS FROM LOCAL STORAGE
-      // ===============================
-
       const users = localStorage.getItem("users")
         ? JSON.parse(localStorage.getItem("users"))
         : [
@@ -179,50 +176,29 @@
               password: "123456",
             },
           ];
-
-      // ===============================
       // LOGIN FORM
-      // ===============================
-
       const loginForm = document.getElementById("loginForm");
-
       loginForm.addEventListener("submit", function (event) {
         // Prevent page refresh
         event.preventDefault();
 
         // Get username and password
         const username = document.getElementById("username").value.trim();
-
         const password = document.getElementById("password").value;
-
-        // ===============================
         // FIND USERNAME
-        // ===============================
-
         const loginUser = users.find((user) => user.userName === username);
-
-        // ===============================
         // USER NOT FOUND
-        // ===============================
-
         if (!loginUser) {
           alert("User not found!");
           return;
         }
-
-        // ===============================
         // CHECK PASSWORD
-        // ===============================
-
         if (loginUser.password === password) {
           // Save login status
           localStorage.setItem("isLoggedIn", "true");
-
           // Save current username
           localStorage.setItem("currentUser", username);
-
           alert("Log in successful!");
-
           // Go to home page
           window.location.href = "index.html";
         } else {
